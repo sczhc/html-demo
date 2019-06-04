@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>magnific popup</title>
+    <link rel="stylesheet" href="../node_modules/magnific-popup/dist/magnific-popup.css">
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+</head>
+
+<body>
+    <style>
+        #pop {
+            position: relative;
+            background: #FFF;
+            padding: 20px;
+            width: auto;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        .white-popup {
+            position: relative;
+            background: #FFF;
+            padding: 40px;
+            width: auto;
+            max-width: 200px;
+            margin: 20px auto;
+            text-align: center;
+        }
+    </style>
+    <!-- magnific popup 参数
+    type 弹出类型(image、iframe、inline、ajax) -->
+
+    <p>自定义弹窗</p>
+    <a href="#pop" class="button is-large has-text-primary" id="btn">添加</a>
+    <div id="pop" class="mfp-hide">
+        <lable for="sname">用户名</lable><input type="text" id="sname" name="ss" value="">
+        <hr>
+        <input type="button" value="关闭" id="btnClose">
+    </div>
+    <hr />
+    <p>弹出图片</p>
+    <div class="html-code grid-of-images">
+        <div class="popup-gallery">
+            <a href="http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg" title="The Cleaner"><img
+                    src="http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_s.jpg" width="75" height="75" /></a>
+            <a href="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_b.jpg" title="Winter Dance"><img
+                    src="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_s.jpg" width="75" height="75" /></a>
+            <a href="http://farm9.staticflickr.com/8225/8558295635_b1c5ce2794_b.jpg" title="The Uninvited Guest"><img
+                    src="http://farm9.staticflickr.com/8225/8558295635_b1c5ce2794_s.jpg" width="75" height="75" /></a>
+            <a href="http://farm9.staticflickr.com/8383/8563475581_df05e9906d_b.jpg" title="Oh no, not again!"><img
+                    src="http://farm9.staticflickr.com/8383/8563475581_df05e9906d_s.jpg" width="75" height="75" /></a>
+            <a href="http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_b.jpg" title="Swan Lake"><img
+                    src="http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_s.jpg" width="75" height="75" /></a>
+            <a href="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_b.jpg" title="The Shake"><img
+                    src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" width="75" height="75" /></a>
+            <a href="http://farm9.staticflickr.com/8378/8559402848_9fcd90d20b_b.jpg" title="Who's that, mommy?"><img
+                    src="http://farm9.staticflickr.com/8378/8559402848_9fcd90d20b_s.jpg" width="75" height="75" /></a>
+        </div>
+    </div>
+    <hr />
+    <p>弹出视频</p>
+    <a class="popup-video" href="https://www.youtube.com/watch?v=-yM-8N8-LTE?autoplay=1&mute=1">open video</a>
+    <hr />
+    <p>测试</p>
+    <div class="test">Open image</div>
+    <div id="my-popup" class="mfp-hide white-popup">
+        Inline popup
+    </div>
+    <hr />
+    <p>ajax</p>
+    <a class="simple-ajax" href="ajax-test.html">Load content via ajax</a>
+    <hr />
+    <p>Open map</p>
+    <a class="popup-gmaps"
+        href="https://www.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom">Open
+        Google Map</a>
+    <br />
+    <a class="popup-gao" href="gdMap.html">Open GaoDei Map</a>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            $('#btn').magnificPopup({
+                type: 'inline',         // 行内的类型，类比图片的模式
+                closeBtnInside: true,   // 显示关闭按钮
+                closeOnBgClick: true  // 点击遮罩透明背景关闭弹出层
+            });
+
+            $('.popup-gallery').magnificPopup({
+                delegate: 'a',
+                type: 'image',
+                tLoading: 'Loading image #%curr%...',
+                mainClass: 'mfp-img-mobile',
+                gallery: {
+                    enabled: true,
+                    navigateByImgClick: true,
+                    preload: [0, 1]
+                },
+                image: {
+                    tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+                    titleSrc: function (item) {
+                        return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';
+                    }
+                }
+            });
+
+            $('.popup-video,.popup-gmaps').magnificPopup({
+                disableOn: 700,
+                type: 'iframe',
+                mainClass: 'mfp-fade',
+                removalDelay: 160,
+                preloader: false,
+                fixedContentPos: false
+            });
+
+            $('.test').magnificPopup({
+                items: [
+                    {
+                        src: 'http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_b.jpg',
+                        title: 'Peter & Paul fortress in SPB'
+                    },
+                    {
+                        src: 'https://www.youtube.com/watch?v=-yM-8N8-LTE',
+                        type: 'iframe'
+                    },
+                    {
+                        src: $('<div class="white-popup">Dynamically created element</div>'),
+                        type: 'inline'
+                    },
+                    {
+                        src: '<div class="white-popup">Popup from HTML string</div>',
+                        type: 'inline'
+                    },
+                    {
+                        src: '#my-popup',
+                        type: 'inline'
+                    }
+                ],
+                gallery: {
+                    enabled: true
+                },
+                type: 'image'
+            })
+
+            $('.simple-ajax').magnificPopup({
+                type: 'ajax'
+            })
+
+            $('.popup-gao').magnificPopup({
+                type: 'iframe'
+            })
+
+        });
+    </script>
+</body>
+
+</html>

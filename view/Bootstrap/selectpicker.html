@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>selectric</title>
+	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="/node_modules/jquery-selectric/src/jquery.selectric.js"></script>
+	<link rel="stylesheet" href="/node_modules/jquery-selectric/src/selectric.css">
+</head>
+<body>
+	<div>
+		<select id="selectric">
+			<option value="请选择">查看所有</option>
+			<option>地面</option>
+			<option>天空</option>
+		</select>
+	</div>
+
+	<script>
+		let values = $('#selectric option').attr('value');
+		console.log(values);
+		$('#selectric').selectric();
+	</script>
+</body>
+</html>

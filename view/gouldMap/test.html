@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gould Map</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <style>
+        html,
+        body,
+        #container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .input-card {
+            width: 150px;
+            top: 10px;
+            bottom: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <div class="input-card" style="width:13rem">
+        <h4>底图语言切换</h4>
+        <div id="lang">
+            <div class="input-item">
+                <input id="zh_cn" name="language" type="radio" checked="checked">
+                <span class="input-text">中文底图</span>
+            </div>
+            <div class="input-item">
+                <input id="zh_en" name="language" type="radio">
+                <span class="input-text">中英文对照</span>
+            </div>
+            <div class="input-item">
+                <input id="en" name="language" type="radio">
+                <span class="input-text">英文底图</span>
+            </div>
+        </div>
+    </div>
+    <!-- 加载地图JSAPI脚本 -->
+    <script src="https://cache.amap.com/lbs/static/es5.min.js"></script>
+    <script
+        src="https://webapi.amap.com/maps?v=1.4.13&key=ac02b3e20e7f81bd78e294d685335229&&plugin=AMap.Scale,AMap.OverView,AMap.ToolBar"></script>
+    <script>
+        var map = new AMap.Map('container', {
+            resizeEnable: true, //是否监控地图容器尺寸变化
+            // center: [121.498586, 31.239637], //初始化地图中心点
+            lang: "zh_cn", //可选值：en，zh_en, zh_cn
+            zoom: 15 //初始化地图层级
+        });
+
+        AMap.plugin(['AMap.ToolBar', 'AMap.Scale', 'AMap.OverView'], function () {
+            //工具条
+            var toolBar = new AMap.ToolBar();
+            //比例尺
+            var scale = new AMap.Scale();
+            //鹰眼
+            var overView = new AMap.OverView();
+            map.addControl(toolBar);
+            map.addControl(scale);
+            map.addControl(overView);
+        })
+
+        //工具条
+        // var toolBar = new AMap.ToolBar({
+        //     visible: false
+        // })
+        // //比例尺
+        // var scale = new AMap.Scale({
+        //     visible: false
+        // })
+        // //鹰眼
+        // var overView = new AMap.OverView({
+        //     visible: false
+        // })
+        // map.addControl(toolBar);
+        // map.addControl(scale);
+        // map.addControl(overView);
+        // toolBar.show();
+        // scale.show();
+        // overView.show();
+
+        //绑定radio点击事件
+        var radios = document.querySelectorAll("#lang input");
+        radios.forEach(function (ratio) {
+            ratio.onclick = setLang;
+        });
+
+        function setLang() {
+            map.setLang(this.id);
+        }
+    </script>
+</body>
+
+</html>

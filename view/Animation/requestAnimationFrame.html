@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>requestAnimationFrame</title>
+</head>
+
+<body>
+    <style>
+        .container {
+            position: relative;
+            width: 1000px;
+            height: 100px;
+            background-color: yellow;
+            margin: 50px auto;
+        }
+
+        .animate {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+    <div class="container">
+        <div class="animate"></div>
+    </div>
+
+    <script>
+        let ele = document.querySelector('.animate');
+        let left = 0;
+        let bound = false;
+        window.requestAnimationFrame(Move);
+        function Move() {
+            if (left == 0 || left == 900) {
+                bound = !bound;
+            }
+            // bound ? left++ : left--;
+            bound ? left += 10 : left -= 10;
+            ele.style.left = left + 'px';
+            window.requestAnimationFrame(Move);
+        }
+    </script>
+</body>
+
+</html>

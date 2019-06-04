@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Slick</title>
+    <link rel="stylesheet" href="/node_modules/slick-carousel/slick/slick-theme.css">
+    <link rel="stylesheet" href="/node_modules/slick-carousel/slick/slick.css">
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/slick-carousel/slick/slick.min.js"></script>
+</head>
+
+<body>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #3497db;
+        }
+
+        .slick,
+        .slick-items,
+        .variable-width {
+            width: 1000px;
+            margin: 50px auto;
+        }
+
+        .slick-slice {
+            background-color: #fff;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        a {
+            color: black;
+        }
+
+        .slick-items .slick-slice {
+            margin: 20px;
+        }
+
+        .variable-width .slick-slice {
+            margin: 20px;
+        }
+
+        .variable-width .width-300 {
+            width: 300px;
+        }
+
+        .variable-width .width-100 {
+            width: 100px;
+        }
+
+        .variable-width .width-225 {
+            width: 225px;
+        }
+
+        .variable-width .width-175 {
+            width: 175px;
+        }
+
+        .variable-width .width-125 {
+            width: 125px;
+        }
+
+        .variable-width .width-150 {
+            width: 150px;
+        }
+    </style>
+
+    <div class="slick">
+        <div class="slick-slice">
+            <a>slick 1</a>
+        </div>
+        <div class="slick-slice">
+            <a>slick 2</a>
+        </div>
+        <div class="slick-slice">
+            <a>slick 3</a>
+        </div>
+        <div class="slick-slice">
+            <a>slick 4</a>
+        </div>
+        <div class="slick-slice">
+            <a>slick 5</a>
+        </div>
+    </div>
+
+    <div class="slick-items">
+        <div class="slick-slice">
+            <a>slick 1</a>
+        </div>
+        <div class="slick-slice">
+            <a>slick 2</a>
+        </div>
+        <div class="slick-slice">
+            <a>slick 3</a>
+        </div>
+        <div class="slick-slice">
+            <a>slick 4</a>
+        </div>
+        <div class="slick-slice">
+            <a>slick 5</a>
+        </div>
+        <div class="slick-slice">
+            <a>slick 6</a>
+        </div>
+        <div class="slick-slice">
+            <a>slick 7</a>
+        </div>
+        <div class="slick-slice">
+            <a>slick 8</a>
+        </div>
+        <div class="slick-slice">
+            <a>slick 9</a>
+        </div>
+    </div>
+
+    <div class="variable-width">
+        <div class="slick-slice width-300">
+            <a>width 300</a>
+        </div>
+        <div class="slick-slice width-100">
+            <a>width 100</a>
+        </div>
+        <div class="slick-slice width-225">
+            <a>width 225</a>
+        </div>
+        <div class="slick-slice width-175">
+            <a>width 175</a>
+        </div>
+        <div class="slick-slice width-125">
+            <a>width 125</a>
+        </div>
+        <div class="slick-slice width-150">
+            <a>width 150</a>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            $('.slick').slick();
+
+            $('.slick-items').slick({
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 3
+            });
+            $('.variable-width').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                centerMode: true,
+                variableWidth: true
+            })
+        })
+
+    </script>
+
+</body>
+
+</html>

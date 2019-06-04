@@ -1,0 +1,40 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>HTML中的select下拉框内容显示不全的解决办法</title>
+    <script src="/node_modules/jquery/dist/jquery.js"></script>
+</head>
+
+<body>
+    <div>
+        <select id="select">
+            <option value="hidden">请选择</option>
+            <option>查看所有</option>
+            <option>《粵港澳大灣區發展規劃綱要》宣講工作</option>
+            <option>檢討重大災害應變機制</option>
+        </select>
+    </div>
+
+    <script>
+        //将select通过clone方法保存
+        var select = $("#select").clone();
+
+        //删除所有的option
+        $("#select").find('option').remove();
+
+        //查找出需要显示的option并复制
+        var options = select.find("option[value != hidden]").clone();
+
+        //将需要显示的option添加到select中
+        $("#select").append(options);
+
+        //因为option.remove()不会刷新控件,需要将新的option切换上去
+        //这里排除了options.size() == 0的情况
+        $("#select").find('option').eq(0).attr("selected", true);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fancybox</title>
+    <link rel="stylesheet" href="/node_modules/fancybox/dist/css/jquery.fancybox.css">
+
+    <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/node_modules/fancybox/dist/js/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="/node_modules/fancybox/lib/jquery.mousewheel.pack.js"></script>
+</head>
+
+<body>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .fancybox {
+            display: flex;
+            justify-content: center;
+        }
+
+        .fancybox-slide {
+            margin: 0 10px;
+        }
+
+        /* 弹出层css */
+        .fancybox-wrap .fancybox-nav span {
+            visibility: visible;
+        }
+
+        .fancybox-wrap .fancybox-prev {
+            left: -40px;
+        }
+
+        .fancybox-wrap .fancybox-next {
+            right: -40px;
+        }
+
+        .fancybox-wrap .fancybox-title {
+            background: rgb(0, 0, 0);
+            color: #ffffff;
+            padding: 10px;
+        }
+    </style>
+    <div class="fancybox">
+        <div class="fancybox-slide">
+            <a href="http://farm6.staticflickr.com/5614/15602332537_bae1aaccd8_m.jpg" data-title="f-text1">
+                <img src="http://farm6.staticflickr.com/5614/15602332537_bae1aaccd8_m.jpg">
+            </a>
+        </div>
+        <div class="fancybox-slide">
+            <a href="http://farm8.staticflickr.com/7496/15959236842_6dbcb5b4c8_m.jpg" data-title="f-text2">
+                <img src="http://farm8.staticflickr.com/7496/15959236842_6dbcb5b4c8_m.jpg">
+            </a>
+        </div>
+        <div class="fancybox-slide">
+            <a href="http://farm8.staticflickr.com/7404/12868632153_b0a5718c22_m.jpg" data-title="f-text3">
+                <img src="http://farm8.staticflickr.com/7404/12868632153_b0a5718c22_m.jpg">
+            </a>
+        </div>
+    </div>
+
+    <!-- 弹出层文字介绍 -->
+    <div id="f-text1" hidden>
+        <p>fancybox one</p>
+    </div>
+    <div id="f-text2" hidden>
+        <p>fancybox two</p>
+    </div>
+    <div id="f-text3" hidden>
+        <p>fancybox three</p>
+    </div>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            $('a').attr('rel', 'gallery').fancybox({
+                prevEffect: true,
+                beforeShow: function () {
+                    let id = $(this.element).data('title');
+                    id = $('#' + id);
+                    if (id.length) {
+                        this.title = id.html();
+                    }
+                },
+                helpers: {
+                    cache: true,
+                    title: {
+                        type: 'inside'
+                    }
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>
