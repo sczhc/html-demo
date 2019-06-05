@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>简易计算器</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .content {
+            width: 300px;
+            height: 400px;
+            margin: 50px auto;
+            background: #CBC6C6;
+            border: 1px solid #139EB7;
+            box-shadow: -5px -5px 5px #565454;
+            border-radius: 15px;
+        }
+
+        #toptext {
+            width: 280px;
+            height: 50px;
+            margin: 10px auto;
+            margin-left: 9px;
+            line-height: 50px;
+            border-radius: 15px;
+            text-align: right;
+            font-size: 24px;
+            border: 1px #F0D711 solid;
+        }
+
+        .btns {
+            width: 280px;
+            height: 300px;
+            margin: 10px auto;
+        }
+
+        .btns input {
+            width: 50px;
+            margin: 10px;
+            height: 60px;
+            float: left;
+            font-size: 24px;
+            line-height: 60px;
+            border-radius: 10px;
+            transform-origin: left top;
+            background: linear-gradient(to right, #0df60d, red);
+        }
+
+        .btns input:hover {
+            background: linear-gradient(to left, #0df60d, red);
+            transform: rotate(15deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <input type="text" id="toptext">
+        <div class="btns">
+            <input type="button" value="1" class="num">
+            <input type="button" value="2" class="num">
+            <input type="button" value="3" class="num">
+            <input type="button" value="+" class="jisuan">
+            <input type="button" value="4" class="num">
+            <input type="button" value="5" class="num">
+            <input type="button" value="6" class="num">
+            <input type="button" value="-" class="jisuan">
+            <input type="button" value="7" class="num">
+            <input type="button" value="8" class="num">
+            <input type="button" value="9" class="num">
+            <input type="button" value="*" class="jisuan">
+            <input type="button" value="0" class="num">
+            <input type="button" value="C" id="clear">
+            <input type="button" value="=" id="equals">
+            <input type="button" value="/" class="jisuan">
+        </div>
+    </div>
+    <script type="text/javascript">
+        var text = document.getElementsByTagName('input')[0];
+        var clear = document.getElementById('clear');
+        var equals = document.getElementById('equals');
+        var js = document.getElementsByClassName('jisuan');
+        var num = document.getElementsByClassName('num');
+
+        text.value = 0;
+        var tex = "";
+        var fuhao = "";
+        var firstNum = "";
+        var secondNum = "";
+
+        for (var i = 0; i < num.length; i++) {
+            num[i].onclick = function () {
+                if (fuhao) {
+                    text.value += this.value;
+                    secondNum = this.value;
+                } else {
+                    tex = tex + this.value;
+                    firstNum = tex;
+                    text.value = tex;
+                }
+            }
+        }
+        for (var j = 0; j < js.length; j++) {
+            js[j].onclick = function () {
+                fuhao = this.value;
+                text.value += this.value;
+            }
+        }
+
+        equals.onclick = function () {
+            switch (fuhao) {
+                case '+':
+                    var res = firstNum * 1 + secondNum * 1;
+                    break;
+                case '-':
+                    var res = firstNum - secondNum;
+                    break;
+                case '*':
+                    var res = firstNum * secondNum;
+                    break;
+                case '/':
+                    var res = firstNum / secondNum;
+                    break;
+                default:
+                    break;
+            }
+            text.value = res;
+            tex = "";
+            fuhao = "";
+            firstNum = "";
+            secondNum = "";
+        }
+        clear.onclick = function () {
+            text.value = "";
+        }
+    </script>
+</body>
+
+</html>
