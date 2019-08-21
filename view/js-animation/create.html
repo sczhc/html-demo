@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>create span</title>
+</head>
+
+<body>
+	<style type="text/css">
+		.text-popup {
+			position: absolute;
+			z-index: 99;
+			width: 20px;
+			height: 20px;
+			background-color: red;
+			animation: textPopup 1s;
+		}
+
+		@keyframes textPopup {
+			0% {
+				transform: translateY(0);
+				opacity: 1;
+			}
+
+			100% {
+				opacity: 0;
+				transform: translateY(-50px);
+			}
+		}
+	</style>
+
+	<script type="text/javascript">
+		window.onload = function () {
+			document.body.addEventListener('click', event => {
+				let x = event.pageX, y = event.pageY;
+				let element = document.createElement('span');
+				element.className = 'text-popup';
+
+				element.addEventListener('animationend', () => {
+					element.parentNode.removeChild(element);
+				});
+
+				element.style.left = (x - element.clientWidth / 2) + 'px';
+				element.style.top = (y - element.clientHeight) + 'px';
+			})
+			// document.documentElement.addEventListener('click', event => {
+			// 	let x = event.pageX, y = event.pageY;
+			// 	let element = document.createElement('span');
+			// 	element.className = 'text-popup';
+
+			// 	element.addEventListener('animationend', () => {
+			// 		element.parentNode.removeChild(element);
+			// 	});
+
+			// 	element.style.left = (x - element.clientWidth / 2) + 'px';
+			// 	element.style.top = (y - element.clientHeight) + 'px';
+			// })
+		}
+	</script>
+</body>
+
+</html>
